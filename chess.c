@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <stdbool.h>
 
 // ♔ ♕ ♖ ♗ ♘ ♙
 
@@ -15,11 +15,16 @@
  
 */
 void showBoard (int board[8][8]) {
-	printf("\n\n   01234567\n");
-	printf("  ╔════════╗\n");
+	printf("\n\n   0 1 2 3 4 5 6 7\n");
+	printf("  ╔═╤═╤═╤═╤═╤═╤═╤═╗\n");
 	for (int i = 0; i < 8; i++) {
 		printf("%d ║", i); 
+		bool flag = true;
 		for (int j = 0; j < 8; j++) {
+			if (!flag) {
+                                printf("│");
+                        }
+                        flag = false;
 			if (board[i][j] == 0) {
 				if ((i + j) % 2 == 0) {
 					printf(" ");
@@ -41,9 +46,11 @@ void showBoard (int board[8][8]) {
 			}
 		}
 		printf("║\n");
-//			printf(""); 
+		if (i < 7) {
+                        printf("  ╟─┼─┼─┼─┼─┼─┼─┼─╢\n") ;
+                }
 	}
-	printf("  ╚════════╝\n");
+	printf("  ╚═╧═╧═╧═╧═╧═╧═╧═╝\n");
 }
 
 int main () {
