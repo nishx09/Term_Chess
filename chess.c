@@ -15,9 +15,10 @@
  
 */
 void showBoard (int board[8][8]) {
-	printf("\n\n╔════════╗\n");
+	printf("\n\n   01234567\n");
+	printf("  ╔════════╗\n");
 	for (int i = 0; i < 8; i++) {
-		printf("║"); 
+		printf("%d ║", i); 
 		for (int j = 0; j < 8; j++) {
 			if (board[i][j] == 0) {
 				if ((i + j) % 2 == 0) {
@@ -30,11 +31,11 @@ void showBoard (int board[8][8]) {
  			} else if (board[i][j] == 2) {
 				printf("♕");
 			} else if (board[i][j] == 3) {
-				printf("♖");
-			} else if (board[i][j] == 4) {
 				printf("♗");
-			} else if (board[i][j] == 5) {
+			} else if (board[i][j] == 4) {
 				printf("♘");
+			} else if (board[i][j] == 5) {
+				printf("♖");
 			} else if (board[i][j] == 6) {
 				printf("♙");
 			}
@@ -42,7 +43,7 @@ void showBoard (int board[8][8]) {
 		printf("║\n");
 //			printf(""); 
 	}
-	printf("╚════════╝\n");
+	printf("  ╚════════╝\n");
 }
 
 int main () {
