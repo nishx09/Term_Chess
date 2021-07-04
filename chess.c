@@ -65,11 +65,24 @@ int main () {
 			    , {6, 6, 6, 6, 6, 6, 6, 6}
 			    , {5, 4, 3, 1, 2, 3, 4, 5}
 			    } ;
-	printf("Board Initialized!") ;
+  	char buf[100];
+  	bool whitesMove = true;
+	printf("Board Initialized!\n") ;
 	
+// 	showBoard(board);
+
+  	printf("Enter `q` to quit at any time.\n");
+  	printf("Moves are entered as co-ordinate pairs, such as \"13-33\" \n");
+  	do {
 	showBoard(board);
-	
-	// rest of game...
-	
-	printf("Terminating...") ;
+    	if (whitesMove) {
+      		printf("White to move.\n");
+    	} else {
+      		printf("Black to move.\n");
+    	}
+    	printf("♔ >> ");
+    	scanf("%s", buf);
+  	} while (buf[0] != 'q' && buf[0] != 'Q') ;
+    
+	printf("Terminating...\n") ;
 }
