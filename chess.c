@@ -142,6 +142,15 @@ bool isValidMove (char* input, int board[8][8]) {
 		case 3 : // Bishop
 			break;
 		case 4 : // Knight
+			if (abs(start_x - end_x) == 1) {
+                 	       if (abs(end_y - start_y) == 2) {
+                        	        return true;
+                        	}
+                	} else if (abs(start_x - end_x) == 2) {
+                        	if (abs(end_y - start_y) == 1) {
+                                	return true;
+                        	}
+                	}
 			break;
 		case 5 : // Rook
 			break;
