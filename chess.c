@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
+
 
 // ♔ ♕ ♖ ♗ ♘ ♙
 
@@ -14,6 +16,8 @@
  ╟ ╢ ╧ ╤
  
 */
+bool isValidMove (char* input, int board[8][8]);
+
 void showBoard (int board[8][8]) {
 	printf("\n\n   0 1 2 3 4 5 6 7\n");
 	printf("  ╔═╤═╤═╤═╤═╤═╤═╤═╗\n");
@@ -82,6 +86,9 @@ bool isValidMove (char* input, int board[8][8]) {
 		case 0: // moving a blank spot is never valid
 			return false;
 		case 1: // King
+			if (abs(start_x - end_x) <= 1 && abs(start_y - end_y) <= 1) {
+                        	return true;
+                	}
 			break;
 		case 2: // Queen
 		//printf("Queen Selected\n");
@@ -139,6 +146,20 @@ bool isValidMove (char* input, int board[8][8]) {
 		case 5 : // Rook
 			break;
 		case 6 : // Pawn
+			if (start_y - end_y == 1 && start_x == end_x) { // forward one
+                        	if (board[start_x][end_y] == 0) {
+                                	return true;
+                        	}
+                	} else if (start_y - end_y == 2 && start_x == end_x) { // forward two
+                        	if (board[start_x][end_y] == 0 && board[start_x][end_y+1] == 0) {
+                                	return true;
+                        	}
+                	} else if (abs(start_x - end_x) == 1 && start_y - end_y == 1) { // capture left or right
+                        	if (board[end_x][end_y] != 0) {
+                                	return true;
+                        	}
+                	}
+                	return false;
 			break;
 	}
 	/*
