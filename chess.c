@@ -140,6 +140,22 @@ bool isValidMove (char* input, int board[8][8]) {
 			}	
 			break;
 		case 3 : // Bishop
+			while (true) {
+                        	xcheck += (start_x > end_x)? -1 : 1;
+                        	ycheck += (start_y > end_y)? -1 : 1;
+                        	if (xcheck < 0 || ycheck < 0 || xcheck > 7 || ycheck > 7) {
+                                	break;
+                        	}
+                        	if (board[xcheck][ycheck] != 0) {
+                                	piecesInWay += 1;
+                        	}
+                        	if (piecesInWay == 2) {
+                                	break;
+                        	}
+                        	if (xcheck == end_x && ycheck == end_y) {
+                                	return true;
+                        	}
+                	}
 			break;
 		case 4 : // Knight
 			if (abs(start_x - end_x) == 1) {
@@ -153,6 +169,28 @@ bool isValidMove (char* input, int board[8][8]) {
                 	}
 			break;
 		case 5 : // Rook
+			while (true) {
+                 	       	if (start_y == end_y) {
+                        	        xcheck += (start_x > end_x)? -1 : 1;
+           	    	       	} else if (start_x == end_x) {
+                                	ycheck += (start_y > end_y)? -1 : 1;
+                      	      	} else {
+                               		return false;
+			  	}
+
+                   		if (xcheck < 0 || ycheck < 0 || xcheck > 7 || ycheck > 7) {
+                               		break;
+                        	}
+                        	if (board[xcheck][ycheck] != 0) {
+                                	piecesInWay += 1;
+                        	}
+                        	if (piecesInWay == 2) {
+                                	break;
+                        	}
+                        	if (xcheck == end_x && ycheck == end_y) {
+                                	return true;
+                        	}
+                	}
 			break;
 		case 6 : // Pawn
 			if (start_y - end_y == 1 && start_x == end_x) { // forward one
